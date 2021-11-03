@@ -20,10 +20,9 @@ const client = new vision.ImageAnnotatorClient({
 });
 const detectColour = async(file_name)=>{
     const [result] = await client.imageProperties(file_name);
-    console.log(result.imagePropertiesAnnotation.dominantColors.colors[0].color);
-    // red = result.imagePropertiesAnnotation.dominantColors.colors[0].color.red;
-    // green = result.imagePropertiesAnnotation.dominantColors.colors[0].color.green;
-    // blue = result.imagePropertiesAnnotation.dominantColors.colors[0].color.blue;
-    // console.log(rgb2hex(`rgb(${red},${green},${blue})`))
+    red = result.imagePropertiesAnnotation.dominantColors.colors[1].color.red;
+    green = result.imagePropertiesAnnotation.dominantColors.colors[1].color.green;
+    blue = result.imagePropertiesAnnotation.dominantColors.colors[1].color.blue;
+    console.log(rgb2hex(`rgba(${red},${green},${blue})`).hex);
 }
 module.exports = {stream, getParentTweet, detectColour}

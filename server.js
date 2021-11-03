@@ -22,7 +22,6 @@ const tweetEvent = (tweet) => {
       axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        // console.log(JSON.stringify(response.data.includes.media[0].url));
         image = response.data.includes.media[0].url;
         detectColour(image);
       })
