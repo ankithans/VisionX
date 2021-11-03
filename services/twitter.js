@@ -1,4 +1,6 @@
 const Twit = require('twit');
+const vision = require('@google-cloud/vision');
+var rgb2hex = require('rgb2hex');
 const config = require('../config/twitter_config')
 const Twitter = new Twit(config)
 
@@ -13,5 +15,15 @@ const getParentTweet = (id) => {
     })
 }
 
-
-module.exports = {stream, getParentTweet}
+const client = new vision.ImageAnnotatorClient({
+    keyFilename: 'vision-creds.json'
+});
+const detectColour = async(file_name)=>{
+    const [result] = await client.imageProperties(file_name);
+    console.log(result.imagePropertiesAnnotation.dominantColors.colors[0].color);
+    // red = result.imagePropertiesAnnotation.dominantColors.colors[0].color.red;
+    // green = result.imagePropertiesAnnotation.dominantColors.colors[0].color.green;
+    // blue = result.imagePropertiesAnnotation.dominantColors.colors[0].color.blue;
+    // console.log(rgb2hex(`rgb(${red},${green},${blue})`))
+}
+module.exports = {stream, getParentTweet, detectColour}

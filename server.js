@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 var axios = require('axios');
 require('dotenv').config()
-const { stream, getParentTweet } = require("./services/twitter");
+const { stream, getParentTweet, detectColour } = require("./services/twitter");
 
 
 const streamRoute = require("./routes/search");
@@ -22,6 +22,9 @@ const tweetEvent = (tweet) => {
       axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data.includes.media[0].url));
+        image = response.data.includes.media[0].url;
+        detectColour(image);
       })
       .catch(function (error) {
         console.log(error);
