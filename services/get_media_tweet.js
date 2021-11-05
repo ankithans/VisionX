@@ -36,7 +36,7 @@ const getTag = async (image) => {
       // console.log(JSON.stringify(response.data));
       // console.log(response.data['records'][0])
       // console.log("------------------------")
-      // console.log(response.data['records'][0]['_objects'][0])
+    //   console.log(response.data['records'][0]['_objects'][0]['_tags'])
       // console.log("------------------------")
       // console.log(response.data['records'][0]['_objects'][0]['_tags'])
       // console.log(response.data['records'][0]['_objects'][0]['_tags']['Category'][0]['name'])
