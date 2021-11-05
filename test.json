@@ -1,0 +1,152 @@
+// data['records']['_objects'][0]['_tags']['_tags_simple']
+
+
+// data['records']['_objects'][0]['_tags']['Category'][0]['name']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Subcategory']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Color']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Gender']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Neckline']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Sleeves']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Material']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Style']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Age']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Design']
+// data['records']['_objects'][0]['_tags']['Category'][0]['Top Category']
+
+{
+  "records": [
+    {
+      "_id": "2342",
+      "_url": "https://pbs.twimg.com/media/FCM_Xh-VcAAzsti.jpg",
+      "product_id": "unique product string",
+      "my_category": "customer category",
+      "product_price": 32.5,
+      "my_tags": ["one", "two", "three"],
+      "_status": {
+        "code": 200,
+        "text": "OK",
+        "request_id": "e053b736-608f-46c4-8a94-4b5194731696"
+      },
+      "_width": 1200,
+      "_height": 675,
+      "_objects": [
+        {
+          "name": "Clothing",
+          "id": "8e6cf45d-d416-4560-a89a-1b83b80e003b",
+          "bound_box": [279, 329, 980, 673],
+          "prob": 0.9246260523796082,
+          "area": 0.29770864197530866,
+          "Top Category": "Clothing",
+          "Category": "Clothing/Upper",
+          "product_id": "unique product string",
+          "my_category": "customer category",
+          "product_price": 32.5,
+          "my_tags": ["one", "two", "three"],
+          "_tags": {
+            "Category": [
+              {
+                "name": "Clothing/Upper",
+                "prob": 1,
+                "id": "fe984081-9c79-44ed-bf48-6e0075066e17",
+                "pre-filled": true
+              }
+            ],
+            "Subcategory": [
+              {
+                "prob": 0.99093,
+                "name": "t-shirts",
+                "id": "769f678b-123e-42fd-acfc-aa64328f6d31"
+              }
+            ],
+            "Color": [
+              {
+                "prob": 0.95994,
+                "name": "white",
+                "id": "da5d452c-2534-4bb9-9e56-a1904c25ab0c"
+              }
+            ],
+            "Gender": [
+              {
+                "prob": 0.85603,
+                "name": "men",
+                "id": "937c8952-89d5-4406-99f8-f82c1b0c71c6"
+              }
+            ],
+            "Neckline": [
+              {
+                "prob": 0.94797,
+                "name": "crew",
+                "id": "777ff42a-2183-4ba7-bccd-07bdced516bf"
+              }
+            ],
+            "Sleeves": [
+              {
+                "prob": 0.88291,
+                "name": "short sleeves",
+                "id": "5e12bdb6-b8f8-4734-9966-d09d10818ce9"
+              }
+            ],
+            "Material": [
+              {
+                "prob": 0.90855,
+                "name": "cotton",
+                "id": "adaf6cd0-2437-4fca-8c46-3ea8c5933bab"
+              }
+            ],
+            "Style": [
+              {
+                "prob": 0.96793,
+                "name": "casual",
+                "id": "f7c9e44d-1a33-46e8-94d5-0f7a7b3a274e"
+              }
+            ],
+            "Age": [
+              {
+                "prob": 0.95862,
+                "name": "adult",
+                "id": "464f18b8-e61b-4f95-afe6-48b3a8db26ab"
+              }
+            ],
+            "Design": [
+              {
+                "prob": 0.98366,
+                "name": "text",
+                "id": "b3dfa504-2628-4ffa-a0b4-7883ac9bc93f"
+              }
+            ],
+            "Top Category": [
+              {
+                "name": "Clothing",
+                "prob": 1,
+                "id": "13052be8-2cc7-48e4-a782-a00d658f997c",
+                "pre-filled": true
+              }
+            ]
+          },
+          "_tags_simple": [
+            "cotton",
+            "casual",
+            "t-shirts",
+            "adult",
+            "Clothing",
+            "text",
+            "men",
+            "white",
+            "Clothing/Upper",
+            "short sleeves",
+            "crew"
+          ]
+        }
+      ]
+    }
+  ],
+  "version": "",
+  "model_format": "",
+  "status": {
+    "code": 200,
+    "text": "OK",
+    "request_id": "e053b736-608f-46c4-8a94-4b5194731696",
+    "proc_id": "30fff21f-50c1-47c6-afb0-f8d55d025e0c"
+  },
+  "statistics": { "processing time": 0.7665488719940186 }
+}
