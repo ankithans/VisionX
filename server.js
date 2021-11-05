@@ -3,13 +3,13 @@ const app = express()
 var axios = require('axios');
 require('dotenv').config()
 const {getTag} = require("./services/get_media_tweet")
-const { stream, getParentTweet, detectColour } = require("./services/twitter");
+const { stream, replyTweet } = require("./services/twitter");
 
 
 const streamRoute = require("./routes/search");
 
 const tweetEvent = (tweet) => {
-    console.log(tweet['in_reply_to_status_id_str']);
+    // console.log(tweet['in_reply_to_status_id_str']);
     
     var config = {
         method: 'get',
@@ -21,11 +21,20 @@ const tweetEvent = (tweet) => {
       
       
       axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
+      .then(async (response) => {
+        // console.log(JSON.stringify(response.data));
         image = response.data.includes.media[0].url;
         // detectColour(image);
-        getTag(image)
+        getTag(image, tweet['id_str']).then((url) => {
+
+         
+        })
+
+
+
+      
+        
+
       })
       .catch(function (error) {
         console.log(error);

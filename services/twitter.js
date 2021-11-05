@@ -6,12 +6,20 @@ const stream = Twitter.stream('statuses/filter', { track: [ '#myntra_discover' ]
 
 const getParentTweet = (id) => {
     Twitter.get("search/tweets", { q: id, count: 1 }, function(err, data ,response) {
-        console.log(data);
-        console.log("---------")
-        console.log(data['statuses'][0]['entities']);
+        // console.log(data);
+        // console.log("---------")
+        // console.log(data['statuses'][0]['entities']);
         return data
     })
 }
+
+const replyTweet = (status, in_reply_to_status_id) =>
+  Twitter.post('statuses/update', {
+    status,
+    in_reply_to_status_id,
+    username: '@',
+  })
+
 
 // const client = new vision.ImageAnnotatorClient({
 //     keyFilename: 'vision-creds.json'
@@ -23,4 +31,4 @@ const getParentTweet = (id) => {
 //     blue = result.imagePropertiesAnnotation.dominantColors.colors[1].color.blue;
 //     console.log(rgb2hex(`rgba(${red},${green},${blue})`).hex);
 // }
-module.exports = {stream, getParentTweet}
+module.exports = {stream, getParentTweet, replyTweet}
