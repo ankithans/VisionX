@@ -5,9 +5,11 @@ var rgb2hex = require('rgb2hex');
 const client = new vision.ImageAnnotatorClient({
   keyFilename: './vision-creds.json'
 });
+const { replyTweet } = require("./twitter");
 
 
-const getTag = async (image) => {
+
+const getTag = async (image, id) => {
   var data = JSON.stringify({
     records: [
       {
@@ -56,6 +58,15 @@ const getTag = async (image) => {
 
       const myntra_url = `https://www.myntra.com/${gender}-${subcategory}?f=Color%3A${capitalizeFirstLetter(color)}_${hex}`
       console.log(myntra_url)
+
+      replyTweet('Hey we found your product here '+myntra_url, id)
+      .then(tweet => {
+
+        // console.log(`tweet #1 ==>`, tweet)
+      })
+      .catch(error => console.log(`error ==>`, error))
+
+      return myntra_url
     })
     .catch(function (error) {
       console.log(error);
