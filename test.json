@@ -12,7 +12,16 @@
 // data['records']['_objects'][0]['_tags']['Category'][0]['Age']
 // data['records']['_objects'][0]['_tags']['Category'][0]['Design']
 // data['records']['_objects'][0]['_tags']['Category'][0]['Top Category']
-
+  //   const neckline = response.data['records'][0]['_objects'][0]['_tags']['Neckline'][0]['name']
+  //   const sleeves = response.data['records'][0]['_objects'][0]['_tags']['Sleeves'][0]['name']
+  //   const material = response.data['records'][0]['_objects'][0]['_tags']['Material'][0]['name']
+  //   const style = response.data['records'][0]['_objects'][0]['_tags']['Style'][0]['name']
+  //   const age = response.data['records'][0]['_objects'][0]['_tags']['Age'][0]['name']
+  //   const design = response.data['records'][0]['_objects'][0]['_tags']['Design'][0]['name']
+  //   const top_category = response.data['records'][0]['_objects'][0]['_tags']['Top Category'][0]['name']
+  var category = tagsJsonObj.hasOwnProperty("Category")
+    ? tags["Category"][0]["name"]
+    : "";
 {
   "records": [
     {
