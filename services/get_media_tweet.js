@@ -2,6 +2,7 @@ const { response } = require("express");
 var axios = require("axios");
 const vision = require("@google-cloud/vision");
 var rgb2hex = require("rgb2hex");
+var namer = require('color-namer')
 const { v4: uuidv4 } = require("uuid");
 
 const client = new vision.ImageAnnotatorClient({
@@ -96,7 +97,8 @@ const detectColour = async (file_name) => {
   green = result.imagePropertiesAnnotation.dominantColors.colors[1].color.green;
   blue = result.imagePropertiesAnnotation.dominantColors.colors[1].color.blue;
   var hexcode = rgb2hex(`rgba(${red},${green},${blue})`).hex;
-  return hexcode.substring(1);
+  var names = namer(hexcode).basic[0].name;
+  return names;
 };
 
 function capitalizeFirstLetter(string) {
