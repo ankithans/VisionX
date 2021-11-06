@@ -8,17 +8,18 @@ const client = new vision.ImageAnnotatorClient({
   keyFilename: "./vision-creds.json",
 });
 const { replyTweet } = require("./twitter");
+// const { getProductsInfo } = require("./scrap");
 var result = {};
 var tagsJsonObj = {};
 
-const getTag = async (image, id) => {
+const getTag = async (image, id, username) => {
   try {
     var { tagsJson, detectColorResponse } = Promise.all([
       (tagsJsonObj = await ximilarTags(image)),
       ([result] = await client.imageProperties(image)),
     ]);
 
-    console.log(detectColorResponse);
+    // console.log(detectColorResponse);
     red = result.imagePropertiesAnnotation.dominantColors.colors[1].color.red;
     green =
       result.imagePropertiesAnnotation.dominantColors.colors[1].color.green;
@@ -29,11 +30,6 @@ const getTag = async (image, id) => {
     console.log(color);
     console.log(hex);
 
-    // console.log(detectColorResponse);
-    // var { color, hex } = detectColorResponse;
-    // console.log(color, hex);
-
-    console.log(tagsJsonObj);
     var subcategory = tagsJsonObj.hasOwnProperty("Subcategory")
       ? tagsJsonObj["Subcategory"][0]["name"]
       : "";
@@ -42,11 +38,16 @@ const getTag = async (image, id) => {
       ? tagsJsonObj["Gender"][0]["name"]
       : "male";
     console.log(gender);
-    var myntra_url = `https://www.myntra.com/${gender}-${subcategory}?f=Color%3A${color}_${hex}&sort=popularity`;
+    var myntra_url = `https://www.myntra.com/${gender}-${subcategory}?f=Color%3A${capitalizeFirstLetter(
+      color
+    )}_${hex}&sort=popularity`;
     console.log(myntra_url);
 
-    // await replyToTweet(myntra_url, id);
-    await replyTweet("Hey we found your product here " + myntra_url, id);
+    r = await replyTweet(
+      "@" + username + " Hey we found your product here " + myntra_url + "  ",
+      id,
+      username
+    );
 
     return myntra_url;
   } catch (error) {
@@ -84,12 +85,6 @@ const ximilarTags = async (image) => {
 
   return tagsJsonObj;
 };
-
-const replyToTweet = async (myntra_url, id) => {
-  await replyTweet("Hey we found your product here " + myntra_url, id);
-};
-
-const detectColour = async (file_name) => {};
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
