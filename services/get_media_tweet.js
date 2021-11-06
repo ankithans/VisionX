@@ -46,7 +46,8 @@ const getTag = async (image, id, username) => {
     r = await replyTweet(
       "@" + username + " Hey we found your product here " + myntra_url + "  ",
       id,
-      username
+      username,
+      myntra_url
     );
 
     return myntra_url;

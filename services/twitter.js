@@ -23,13 +23,13 @@ const getParentTweet = (id) => {
   );
 };
 
-const replyTweet = async (status, in_reply_to_status_id, username) => {
+const replyTweet = async (status, in_reply_to_status_id, username, url) => {
   try {
     const { data } = await axios.get(
-      // url == "" || url == null
-      //   ? "https://www.myntra.com/men-suit-jackets-and-tuxedos?f=Color%3ABlue_273555&sort=popularity"
-      //   : url
-      "https://www.myntra.com/men-t-shirts?f=Color%3AWhite_e9edf4&sort=popularity"
+      url == "" || url == null
+        ? "https://www.myntra.com/men-suit-jackets-and-tuxedos?f=Color%3ABlue_273555&sort=popularity"
+        : url
+      // "https://www.myntra.com/men-t-shirts?f=Color%3AWhite_e9edf4&sort=popularity"
     );
     const $ = cheerio.load(data);
     var products = [];
@@ -60,44 +60,29 @@ const replyTweet = async (status, in_reply_to_status_id, username) => {
           }
 
           fs.unlinkSync(`./${filename}.json`);
-
-          var stat =
-            status +
-            "\n\n" +
-            "Rating - " +
-            products[0]["rating"] +
-            "\n" +
-            "Brand - " +
-            products[0]["brand"] +
-            "\n" +
-            "Sizes - " +
-            products[0]["sizes"] +
-            "\n" +
-            "Discount - " +
-            products[0]["discountDisplayLabel"] +
-            "\n" +
-            "mrp/price - " +
-            products[0]["mrp"] +
-            "/" +
-            products[0]["price"] +
-            "\n";
-
-          // var config = {
-          //   method: "post",
-          //   // url: `https://api.twitter.com/1.1/statuses/update.json?status=${status}&in_reply_to_status_id=${in_reply_to_status_id}&attachment_url=${products[0]["searchImage"]}`,
-          //   url: `https://api.twitter.com/2/statuses/update.json?status=${"status"}&in_reply_to_status_id=${in_reply_to_status_id}`,
-          //   headers: {
-          //     Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
-          //   },
-          // };
-
-          // axios(config)
-          //   .then(function (response) {
-          //     console.log(JSON.stringify(response.data));
-          //   })
-          //   .catch(function (error) {
-          //     console.log(error);
-          //   });
+          var stat = status;
+          if (products.length != 0) {
+            var stat =
+              stat +
+              "\n\n" +
+              "Rating - " +
+              products[0]["rating"] +
+              "\n" +
+              "Brand - " +
+              products[0]["brand"] +
+              "\n" +
+              "Sizes - " +
+              products[0]["sizes"] +
+              "\n" +
+              "Discount - " +
+              products[0]["discountDisplayLabel"] +
+              "\n" +
+              "mrp/price - " +
+              products[0]["mrp"] +
+              "/" +
+              products[0]["price"] +
+              "\n";
+          }
 
           console.log(username);
           Twitter.post("statuses/update", {
@@ -106,35 +91,22 @@ const replyTweet = async (status, in_reply_to_status_id, username) => {
             in_reply_to_status_id,
             username: "@" + username,
           });
-
-          // Twitter.post("statuses/update", {
-          //   status:
-          //     "status\n" +
-          //     "Rating" -
-          //     products[0]["rating"] +
-          //     "\n" +
-          //     "Brand" -
-          //     products[0]["brand"] +
-          //     "\n" +
-          //     "Sizes" -
-          //     products[0]["sizes"] +
-          //     "\n" +
-          //     "Discount" -
-          //     products[0]["discountDisplayLabel"] +
-          //     "\n" +
-          //     "mrp/price" -
-          //     products[0]["mrp"] / products[0]["price"] +
-          //     "\n",
-          //   // attachment_url: products[0]["searchImage"],
-          //   in_reply_to_status_id,
-          //   username: "@",
-          // });
         });
       }
     });
 
     // return products;
   } catch (error) {
+    var stat = status;
+
+    console.log(username);
+    Twitter.post("statuses/update", {
+      status: stat,
+      // attachment_url: products[0]["searchImage"],
+      in_reply_to_status_id,
+      username: "@" + username,
+    });
+
     console.error(error);
     // throw error;
 
