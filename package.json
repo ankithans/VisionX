@@ -21,6 +21,7 @@
   "dependencies": {
     "@google-cloud/vision": "^2.4.0",
     "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "rgb2hex": "^0.2.5",

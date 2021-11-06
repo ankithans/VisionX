@@ -98,7 +98,14 @@ const detectColour = async (file_name) => {
   var hexcode = rgb2hex(`rgba(${red},${green},${blue})`).hex;
   return hexcode.substring(1);
 };
-
+const detectColour = async (file_name) => {
+  const [result] = await client.imageProperties(file_name);
+  red = result.imagePropertiesAnnotation.dominantColors.colors[1].color.red;
+  green = result.imagePropertiesAnnotation.dominantColors.colors[1].color.green;
+  blue = result.imagePropertiesAnnotation.dominantColors.colors[1].color.blue;
+  var hexcode = rgb2hex(`rgba(${red},${green},${blue})`).hex;
+  return hexcode.substring(1);
+};
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
