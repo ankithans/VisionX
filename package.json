@@ -24,7 +24,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "rgb2hex": "^0.2.5",
-    "twit": "^2.2.11"
+    "twit": "^2.2.11",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"

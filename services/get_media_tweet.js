@@ -2,6 +2,8 @@ const { response } = require("express");
 var axios = require("axios");
 const vision = require("@google-cloud/vision");
 var rgb2hex = require("rgb2hex");
+const { v4: uuidv4 } = require("uuid");
+
 const client = new vision.ImageAnnotatorClient({
   keyFilename: "./vision-creds.json",
 });
@@ -12,7 +14,7 @@ const getTag = async (image, id) => {
   var data = JSON.stringify({
     records: [
       {
-        _id: "2342",
+        _id: uuidv4(),
         _url: image,
         product_id: "unique product string",
         my_category: "customer category",
@@ -34,20 +36,24 @@ const getTag = async (image, id) => {
 
   axios(config)
     .then(async (response) => {
-      const category =
-        response.data["records"][0]["_objects"][0]["_tags"]["Category"][0][
-          "name"
-        ];
-      const subcategory =
-        response.data["records"][0]["_objects"][0]["_tags"]["Subcategory"][0][
-          "name"
-        ];
-      const color =
-        response.data["records"][0]["_objects"][0]["_tags"]["Color"][0]["name"];
-      const gender =
-        response.data["records"][0]["_objects"][0]["_tags"]["Gender"][0][
-          "name"
-        ];
+      console.log(response.data["records"][0]["_objects"]);
+      var tags = response.data["records"][0]["_objects"][0]["_tags"];
+
+      var tagsJsonObj = JSON.parse(JSON.stringify(tags));
+      console.log(tagsJsonObj);
+
+      var category = tagsJsonObj.hasOwnProperty("Category")
+        ? tags["Category"][0]["name"]
+        : "";
+      var subcategory = tagsJsonObj.hasOwnProperty("Subcategory")
+        ? tags["Subcategory"][0]["name"]
+        : "";
+      var color = tagsJsonObj.hasOwnProperty("Color")
+        ? tags["Color"][0]["name"]
+        : "White";
+      var gender = tagsJsonObj.hasOwnProperty("Gender")
+        ? tags["Gender"][0]["name"]
+        : "male";
       //   const neckline = response.data['records'][0]['_objects'][0]['_tags']['Neckline'][0]['name']
       //   const sleeves = response.data['records'][0]['_objects'][0]['_tags']['Sleeves'][0]['name']
       //   const material = response.data['records'][0]['_objects'][0]['_tags']['Material'][0]['name']
@@ -55,12 +61,14 @@ const getTag = async (image, id) => {
       //   const age = response.data['records'][0]['_objects'][0]['_tags']['Age'][0]['name']
       //   const design = response.data['records'][0]['_objects'][0]['_tags']['Design'][0]['name']
       //   const top_category = response.data['records'][0]['_objects'][0]['_tags']['Top Category'][0]['name']
-      console.log(gender)
-      newSubCategory = subcategory.replace(" ","-")
-      console.log(newSubCategory)
-      console.log(color)
-      if(color == "Multicolor"){
-        
+      console.log(gender);
+      newSubCategory = subcategory.replace(/\s+/g, "-");
+      console.log(newSubCategory);
+      console.log(color);
+      var colorSplit = color.split(" ");
+      color = colorSplit[colorSplit.length - 1];
+
+      if (color == "Multicolor") {
       }
       const hex = await detectColour(image);
 
@@ -87,7 +95,6 @@ const detectColour = async (file_name) => {
   red = result.imagePropertiesAnnotation.dominantColors.colors[1].color.red;
   green = result.imagePropertiesAnnotation.dominantColors.colors[1].color.green;
   blue = result.imagePropertiesAnnotation.dominantColors.colors[1].color.blue;
-  // console.log(rgb2hex(`rgba(${red},${green},${blue})`).hex);
   var hexcode = rgb2hex(`rgba(${red},${green},${blue})`).hex;
   return hexcode.substring(1);
 };

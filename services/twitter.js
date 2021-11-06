@@ -20,15 +20,4 @@ const replyTweet = (status, in_reply_to_status_id) =>
     username: '@',
   })
 
-
-// const client = new vision.ImageAnnotatorClient({
-//     keyFilename: 'vision-creds.json'
-// });
-// const detectColour = async(file_name)=>{
-//     const [result] = await client.imageProperties(file_name);
-//     red = result.imagePropertiesAnnotation.dominantColors.colors[1].color.red;
-//     green = result.imagePropertiesAnnotation.dominantColors.colors[1].color.green;
-//     blue = result.imagePropertiesAnnotation.dominantColors.colors[1].color.blue;
-//     console.log(rgb2hex(`rgba(${red},${green},${blue})`).hex);
-// }
 module.exports = {stream, getParentTweet, replyTweet}
