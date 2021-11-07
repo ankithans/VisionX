@@ -86,3 +86,10 @@ Future expansion of this service on other social media platforms like Facebook/Y
 - Twitter API
 - ExpressJS
 - Myntra
+
+## 👨🏽‍🤝‍👨🏽 Contributors
+- [Kartik Bansal](https://github.com/kbansal77)
+- [Adit Patel](https://github.com/aditpatel01)
+- [Aryamaan Pandey](https://github.com/Aryamaan23)
+- [Ankit Hans](https://github.com/ankithans)
+
