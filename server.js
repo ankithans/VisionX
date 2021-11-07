@@ -4,11 +4,25 @@ var axios = require("axios");
 require("dotenv").config();
 const { getTag } = require("./services/get_media_tweet");
 const { stream, replyTweet } = require("./services/twitter");
+const logger = require("node-color-log");
 
 const streamRoute = require("./routes/search");
 
 const tweetEvent = (tweet) => {
-  console.log(tweet);
+  // console.log(tweet);
+  const setting = {
+    bold: true,
+    // dim: true,
+    underscore: true,
+    reverse: true,
+    italic: true,
+    // strikethrough: false,
+  };
+  logger.fontColorLog(
+    "yellow",
+    "  Tweet Captured with #myntra_discover hashtag  ",
+    setting
+  );
   // console.log(tweet['in_reply_to_status_id_str']);
 
   tweet_id = tweet["in_reply_to_status_id_str"];

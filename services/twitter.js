@@ -5,6 +5,15 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
+const logger = require("node-color-log");
+const setting = {
+  bold: true,
+  // dim: true,
+  underscore: true,
+  reverse: true,
+  italic: true,
+  // strikethrough: true,
+};
 
 const stream = Twitter.stream("statuses/filter", {
   track: ["#myntra_discover"],
@@ -206,7 +215,8 @@ const replyTweet = async (status, in_reply_to_status_id, username, url) => {
                 products[4]["landingPageUrl"];
           }
 
-          console.log(username);
+          // console.log(username);
+          logger.fontColorLog("blue", `  username - ${username}  `, setting);
           var tweet_main_id = "";
 
           Twitter.post(
@@ -218,7 +228,12 @@ const replyTweet = async (status, in_reply_to_status_id, username, url) => {
               username: "@" + username,
             },
             function (err, data, response) {
-              console.log(data);
+              // console.log(data);
+              logger.fontColorLog(
+                "yellow",
+                "  Replied with the myntra products URL  ",
+                setting
+              );
               tweet_main_id = data["id_str"];
             }
           );
@@ -266,6 +281,12 @@ const replyTweet = async (status, in_reply_to_status_id, username, url) => {
               tweet_main_id,
               username: "@" + username,
             });
+
+          logger.fontColorLog(
+            "yellow",
+            "  Details sent for individual products  ",
+            setting
+          );
         });
       }
     });
@@ -287,6 +308,10 @@ const replyTweet = async (status, in_reply_to_status_id, username, url) => {
 
     // return [];
   }
+
+  setTimeout(() => {
+    logger.fontColorLog("green", "  Process Completed Sucessfully  ", setting);
+  }, 3000);
 
   // return await Promise.resolve(
 
