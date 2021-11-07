@@ -14,7 +14,7 @@ We propose a social media(twitter/Instagram) bot that can help the customers to 
 
 ![image](https://user-images.githubusercontent.com/60667917/140643547-0b5f6166-bf3e-4ddf-8eb7-4f93c4eac2e6.png)
 
-> Here is the step by step approach:
+## ✨ Flow
 
 #### 1. Twitter API
 - Twitter Stream Endpoint -  statuses/filter, to stream tweets with #myntra_discover
