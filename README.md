@@ -51,6 +51,18 @@ We propose a social media(twitter/Instagram) bot that can help the customers to 
 - Product Recommendation with brand, ratings, sizes, discounts, MRP, price and a direct link to buy the product
 - Can be used by anyone eg. influencers, common public etc
 
+## ⛷ Business Applicability
+Because we are building on existing platforms such as Twitter, Myntra, and Instagram, the implementation of our solution is very smooth and simple. 
+We are not a separate app or website that users must download or visit. We are a service that will be available on the most popular social media platforms, such as Twitter, Instagram and Facebook (future).
+When someone posts a photo of themselves, especially actors/creators/influencers, we as users want to buy a similar product, but it is difficult to find clothings related to that image. As you have seen our solution does that for you!
+Simply reply to the tweet with a hashtag, and our Bot will share the link and other product details as a reply or in your inbox messages in your inboxes. As a result, our solution is both time-saving for users and profitable for myntra.
+
+## 🧠 Potential Impact & Future Scope
+Our project targets to solve the problem statement in such a way that it creates ease for customers to shop resulting in more use of our service. This project would be the first small step towards the socialization of e-commerce companies. 
+A new consumer survey indicates that roughly half of consumers respond to social media as a marketing and commerce channel. 
+Keeping this data in mind our service can make a huge impact on socialization of e-commerce and on customer service as well.
+Future expansion of this service on other social media platforms like Facebook/Youtube/Pinterest will increase the overall traffic on Myntra’s  website and the potential customers.
+
 
 ## 🤖 Tech Stacks & dependencies
 - nodejs
