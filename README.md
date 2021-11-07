@@ -77,6 +77,11 @@ A new consumer survey indicates that roughly half of consumers respond to social
 Keeping this data in mind our service can make a huge impact on socialization of e-commerce and on customer service as well.
 Future expansion of this service on other social media platforms like Facebook/Youtube/Pinterest will increase the overall traffic on Myntra’s website and the potential customers.
 
+## 👣 Steps to run locally
+1. Clone the repo in your local machine and setup the node environment. Create .env file similar to .env.sample file with all the required fields.
+2. Do `yarn` in root directory to install all the dependencies.
+3. Type `yarn dev` in the terminal to start the development server.
+
 ## 🤖 Tech Stacks & dependencies
 
 - nodejs
